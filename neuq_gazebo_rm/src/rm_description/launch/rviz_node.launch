@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="rm_description" type="move.py" name="move"/>
+	<node pkg="rm_description" type="getpoint" name="getpoint"/> 
+	<node pkg="rm_description" type="rviz.py" name="hh"/>
+	<node pkg="rm_description" type="gazebo_teleop" name="teleop_"/>
+</launch>

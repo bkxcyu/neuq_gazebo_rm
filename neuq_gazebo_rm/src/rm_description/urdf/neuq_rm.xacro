@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" 
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+    name="swivel">
+
+    <xacro:property name="length_wheel" value="0.05" />             <!--长度 -->
+    <xacro:property name="radius_wheel" value="0.05" />             <!--半径-->        
+    <xacro:macro name="default_inertial" params="mass">
+               <inertial>
+                       <mass value="${mass}" />
+                       <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                                iyy="1.0" iyz="0.0"
+                                izz="1.0" />
+               </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="support_platform" params="x y z num">
+	<joint name="support_joint_${num}" type="fixed">
+	<origin xyz="${x} ${y} ${z}" />
+        <parent link="base_link" />
+        <child link="support_${num}" />
+	</joint>
+	<link name="support_${num}">
+        <visual>
+            <geometry>
+                    <cylinder length=".1" radius=".01"/>
+                </geometry>
+            <origin rpy="0 0 1.57075" xyz="${x} ${y} ${z}"/>
+            <material name="white">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                    <box size="0.01 .03 0.01"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="0.01"/>
+    </link>
+    </xacro:macro>
+
+
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                    <box size="0.001 0.001 0.001"/>
+                </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <xacro:default_inertial mass="0.0001"/>
+    </link>
+    <joint name="base_footprint_joint" type="fixed">
+        <origin xyz="-0 0 0.1" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
+    </joint>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                    <cylinder length=".05" radius=".18"/>
+                </geometry>
+            <origin rpy="0 0 1.57075" xyz="0 0 0.07"/>
+        </visual>
+        <collision>
+            <geometry>
+                    <cylinder length="0.005" radius="0.15"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="10"/>
+    </link>
+	<!--support-->
+	<support_platform x="0.05" y="0.05" z="0.06" num="1"/>
+	<support_platform x="-0.05" y="0.05" z="0.06" num="2"/>
+	<support_platform x="0.05" y="-0.05" z="0.06" num="3"/>
+	<support_platform x="-0.05" y="-0.05" z="0.06" num="4"/>
+
+	<!--gimbal-->
+    <link name="gimbalplat_link">
+        <visual>
+            <geometry>
+                    <cylinder length=".03" radius=".2"/>
+                </geometry>
+            <origin rpy="0 0 1.57075" xyz="0 0 0"/>
+            <material name="black">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                    <cylinder length="0.038" radius="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="1"/>
+    </link>
+
+	<joint name="gimbal" type="fixed">
+		<origin xyz="0 0 0.17" />
+       		 <parent link="base_link" />
+        	<child link="gimbalplat_link" />
+	</joint>
+<!--wheel 1 2 3 4-->
+ <link name="wheel_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_1.STL" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+<collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_1.STL" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255442737 0.00219029629808571 0.0869776978531889" rpy="0 0 0" />
+      <mass value="1.26046106534982" />
+      <inertia ixx="0.00358551231200165" ixy="5.3575737679716E-07" ixz="9.77420636918858E-06"
+               iyy="0.00356891330797798" iyz="-5.21575978589779E-05"
+               izz="0.000632447806573278" />
+    </inertial>
+</link>
+  <joint name="base_to_wheel1" type="fixed">
+    <origin xyz="0.2 -0.2 0.0326524329692152" rpy="-1.5707963267949 -6.12303176911189E-17 -2.35619445" />
+    <parent link="base_link" />
+    <child link="wheel_1" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wheel_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_2.STL" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_2.STL" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255442737 0.00219029629808571 0.0869776978531889" rpy="0 0 0" />
+      <mass value="1.26046106534982" />
+      <inertia ixx="0.00358551231200165" ixy="5.3575737679716E-07" ixz="9.77420636918858E-06"
+               iyy="0.00356891330797798" iyz="-5.21575978589779E-05"
+               izz="0.000632447806573278" />
+    </inertial>
+  </link>
+
+  <joint name="base_to_wheel2" type="fixed">
+    <origin xyz="-0.2 0.2 0.0326524329692152" rpy="1.5707963267949 3.06151588454563E-17 0.78539815" />
+    <parent link="base_link" />
+    <child link="wheel_2" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wheel_3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_3.STL" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_3.STL" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255220512 0.0021902960708142 0.0869776988816526" rpy="0 0 0" />
+      <mass value="1.26046101591689" />
+      <inertia ixx="0.00358551244745713" ixy="5.35757376420613E-07" ixz="9.77420528667985E-06"
+               iyy="0.00356891344380256" iyz="-5.21575905001385E-05"
+               izz="0.000632447806238922" />
+    </inertial>
+  </link>
+  <joint name="base_to_wheel3" type="fixed">
+    <origin xyz="0.2 0.2 0.0326524329692152" rpy="1.57079632679490 3.06151588456647E-17 -0.78539815" />
+    <parent link="base_link" />
+    <child link="wheel_3" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wheel_4">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_3.STL" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rm_description/meshes/wheels/wheel_3.STL" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255220512 0.0021902960708142 0.0869776988816526" rpy="0 0 0" />
+      <mass value="1.26046101591689" />
+      <inertia ixx="0.00358551244745713" ixy="5.35757376420613E-07" ixz="9.77420528667985E-06"
+               iyy="0.00356891344380256" iyz="-5.21575905001385E-05"
+               izz="0.000632447806238922" />
+    </inertial>
+  </link>
+  <joint name="base_to_wheel4" type="fixed">
+    <origin xyz="-0.2 -0.2 0.0326524329692152" rpy="1.5707963267949 3.06151588456647E-17 2.35619445" />
+    <parent link="base_link" />
+    <child link="wheel_4" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!--gim_balllllllllllllllllllllllllllll-->
+
+  <link
+    name="gim_link">
+    <inertial>
+      <origin
+        xyz="3.15060006090828E-05 -4.71844785465692E-16 -0.0243287063686799"
+        rpy="0 0 0" />
+      <mass
+        value="1.28319520304303" />
+      <inertia
+        ixx="0.000201918308570387"
+        ixy="-1.62781063301312E-08"
+        ixz="2.49360244993981E-08"
+        iyy="8.47758736521156E-05"
+        iyz="-1.0029928886675E-18"
+        izz="0.000189481579220275" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+     <joint name="base_gim" type="fixed">
+       <parent link="gimbalplat_link"/>
+       <axis xyz="0 0 1" />
+       <child link="gim_link"/>
+       <origin rpy="0 0 0" xyz="0.0 0.0 0.09"/>
+     </joint>
+
+  <link
+    name="yaw_Link">
+    <inertial>
+      <origin
+        xyz="8.4734916297402E-05 -0.0210567199604467 0.0350192020002941"
+        rpy="0 0 0" />
+      <mass
+        value="0.620363041042481" />
+      <inertia
+        ixx="0.000635110656697903"
+        ixy="2.83927165134778E-07"
+        ixz="9.98398801233859E-07"
+        iyy="0.000427297748120087"
+        iyz="-7.69757745582108E-06"
+        izz="0.000601934475765983" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/yaw_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/yaw_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<!--yaw joint and transmission-->
+  <joint name="swivel_J0" type="revolute">
+    <parent link="gim_link" />
+    <child link="yaw_Link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3" upper="3" effort="15.0" velocity="15.0" />
+  </joint>
+
+  <transmission name="tran1"> 
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="swivel_J0">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  <link
+    name="pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.0500676134301025 0.0342025495228345 -0.0112331653769802"
+        rpy="0 0 0" />
+      <mass
+        value="0.361088560734711" />
+      <inertia
+        ixx="0.000415536264346438"
+        ixy="6.16430097683857E-07"
+        ixz="1.18189085240469E-07"
+        iyy="0.000230220737721965"
+        iyz="1.41772657896547E-05"
+        izz="0.000580282454503549" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!--pitch joint and transmission-->
+    <joint name="swivel_J1" type="revolute">
+    <parent link="yaw_Link" />
+    <child link="pitch_Link" />
+    <origin xyz="0 -0.03 0.088" rpy="0.040757 0 -1.5708" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.785" upper="0.785" effort="1.0" velocity="1.0" />
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="swivel_J1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="zhoucheng_Link">
+    <inertial>
+      <origin
+        xyz="0.000686124711460026 3.88451282251623E-09 2.54124357841612E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="2.0562871819405E-07"
+        ixy="1.55409882357327E-13"
+        ixz="-4.19235151298674E-11"
+        iyy="1.80369543345785E-07"
+        iyz="-9.48190155873362E-13"
+        izz="1.80371953239631E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/zhoucheng_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_description/meshes/zhoucheng_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="zhoucheng_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.07 0.088"
+      rpy="0.040757 0 -1.5708" />
+    <parent
+      link="yaw_Link" />
+    <child
+      link="zhoucheng_Link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.785"
+      upper="0.785"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+<!--camera-->
+  <link
+    name="camera_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.01"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.01"
+        iyz="0.0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.03 0.03" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.03 0.03" />
+      </geometry>
+    </collision>
+  </link>
+
+ <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="-0.045 0.24 -0.01"
+      rpy="0 0 1.57" />
+    <parent
+      link="pitch_Link" />
+    <child
+      link="camera_Link" />
+  </joint>
+
+<!--color-->
+ <gazebo reference="camera_Link">
+     <material>Gazebo/Yellow</material>
+     <turnGravityOff>false</turnGravityOff>
+ </gazebo>
+
+
+    <!-- camera -->
+      <gazebo reference="camera_Link">
+        <sensor type="camera" name="camera1">
+          <update_rate>30.0</update_rate>
+          <camera name="head">
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+              <width>800</width>
+              <height>800</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <!-- Noise is sampled independently per pixel on each frame.
+                   That pixel's noise value is added to each of its color
+                   channels, which at that point lie in the range [0,1]. -->
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>rrbot/camera1</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+          </plugin>
+        </sensor>
+      </gazebo>
+
+<!--stereo camera-->
+  <link
+    name="stereo_camera_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="0.01"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.01"
+        iyz="0.0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.03 0.03" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.03 0.03" />
+      </geometry>
+    </collision>
+  </link>
+
+ <joint
+    name="stereo_camera_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.3 0.1"
+      rpy="0 0 0" />
+    <parent
+      link="yaw_Link" />
+    <child
+      link="stereo_camera_Link" />
+  </joint>
+
+<!--color-->
+ <gazebo reference="stereo_camera_Link">
+     <material>Gazebo/Red</material>
+     <turnGravityOff>false</turnGravityOff>
+ </gazebo>
+
+  <!-- stereo camera -->
+    <gazebo reference="stereo_camera_Link">  
+      <sensor type="multicamera" name="stereo_camera">
+       
+        <update_rate>10</update_rate>
+        
+        <camera name="left">
+          <pose>0 0 0 0 0 0</pose>
+          <horizontal_fov>1.047</horizontal_fov>
+          <image>
+            <width>320</width>
+            <height>240</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <camera name="right">
+          <pose>0 -0.07 0 0 0 0</pose>
+          <horizontal_fov>1.047</horizontal_fov>
+          <image>
+            <width>320</width>
+            <height>240</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>        
+        <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+          <cameraName>stereocamera</cameraName>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>10</updateRate>
+          <cameraName>stereocamera</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link_optical</frameName>
+          <baseline>0.07</baseline>
+          <distortion_k1>0.0</distortion_k1>
+          <distortion_k2>0.0</distortion_k2>
+          <distortion_k3>0.0</distortion_k3>
+          <distortion_t1>0.0</distortion_t1>
+          <distortion_t2>0.0</distortion_t2>
+        </plugin>
+      </sensor>
+ </gazebo>
+
+
+
+ <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>/cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>	
+
+
+ <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+         <robotNamespace>/swivel/swivel</robotNamespace>
+        <controlPeriod>0.01</controlPeriod>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>true</legacyModeNS>
+      </plugin>
+</gazebo>
+
+
+</robot>

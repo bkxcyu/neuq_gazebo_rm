@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+
+<robot
+  name="rm_2v2">
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="-0.0207442037203679 -1.07688222944798E-06 0.00195150011446461"
+        rpy="0 0 0" />
+      <mass
+        value="759.302628613987" />
+      <inertia
+        ixx="2390.86619013016"
+        ixy="380.14631482642"
+        ixz="-0.00195727603251669"
+        iyy="4523.49456332609"
+        iyz="5.99041573432582E-06"
+        izz="6914.32946804757" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.8 0.8 0.8 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="lk_center">
+    <inertial>
+      <origin
+        xyz="-2.95051476993152E-07 -3.05527572911594E-07 0.674378198837604"
+        rpy="0 0 0" />
+      <mass
+        value="912.693525825372" />
+      <inertia
+        ixx="644.022708992067"
+        ixy="74.9146564353344"
+        ixz="-0.00022619009636176"
+        iyy="477.620107569949"
+        iyz="7.39971777446858E-05"
+        izz="454.345402051569" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_center.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.647058823529412 0.647058823529412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_center.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_center"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="lk_center" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lk_fix_red">
+    <inertial>
+      <origin
+        xyz="-3.34357963001164 2.41984627116866 0.0346776107902344"
+        rpy="0 0 0" />
+      <mass
+        value="85.4046313644086" />
+      <inertia
+        ixx="9.83056313796239"
+        ixy="-0.658179947999855"
+        ixz="0.0368778312270923"
+        iyy="13.330344338604"
+        iyz="-0.0374098911026917"
+        izz="23.1203346487617" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_fix_red.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_fix_red.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_fix_red"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="lk_fix_red" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lk_fix_blue">
+    <inertial>
+      <origin
+        xyz="3.30174599972211 -2.41984627116866 0.0346776107902347"
+        rpy="0 0 0" />
+      <mass
+        value="85.4046313644086" />
+      <inertia
+        ixx="9.83056313796238"
+        ixy="-0.658179947999851"
+        ixz="-0.0368778312270923"
+        iyy="13.330344338604"
+        iyz="0.0374098911026928"
+        izz="23.1203346487616" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_fix_blue.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_fix_blue.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_fix_blue"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="lk_fix_blue" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lk_bge_red">
+    <inertial>
+      <origin
+        xyz="-2.7138412636623 -1.69665566342041 0.190044278574516"
+        rpy="0 0 0" />
+      <mass
+        value="1325.49062994945" />
+      <inertia
+        ixx="1120.71620264884"
+        ixy="226.820930259578"
+        ixz="-33.1310751133375"
+        iyy="891.26987166594"
+        iyz="-70.0389136563688"
+        izz="1780.57771849542" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_bge_red.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.647058823529412 0.647058823529412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_bge_red.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_bge_red"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="lk_bge_red" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lk_start_redbge">
+    <inertial>
+      <origin
+        xyz="-3.81595446755664 -2.79505541567803 0.37960992634023"
+        rpy="0 0 0" />
+      <mass
+        value="81.5863816226825" />
+      <inertia
+        ixx="2.79415115034067"
+        ixy="-0.0394551870020162"
+        ixz="0.257079517403516"
+        iyy="2.79415125013127"
+        iyz="0.257079307912588"
+        izz="2.46307094612476" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_start_redbge.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.203921568627451 0.203921568627451 0.203921568627451 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_start_redbge.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_r1"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="lk_bge_red" />
+    <child
+      link="lk_start_redbge" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lk_bge_blue">
+    <inertial>
+      <origin
+        xyz="2.67200763337277 1.69665566342041 0.190044278574516"
+        rpy="0 0 0" />
+      <mass
+        value="1325.49062994945" />
+      <inertia
+        ixx="1120.71620264884"
+        ixy="226.820930259578"
+        ixz="33.1310751133375"
+        iyy="891.269871665943"
+        iyz="70.0389136563703"
+        izz="1780.57771849542" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_bge_blue.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.647058823529412 0.647058823529412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/lk_bge_blue.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_bge_blue"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="lk_bge_blue" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="link_start_bluebge">
+    <inertial>
+      <origin
+        xyz="3.77412083728405 2.79505541570633 0.379609926464602"
+        rpy="0 0 0" />
+      <mass
+        value="81.5863816549417" />
+      <inertia
+        ixx="2.79415115110836"
+        ixy="-0.0394551870014263"
+        ixz="-0.257079517425553"
+        iyy="2.7941512508934"
+        iyz="-0.257079307833098"
+        izz="2.46307094613614" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/link_start_bluebge.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.203921568627451 0.203921568627451 0.203921568627451 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm_2v2/meshes/link_start_bluebge.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_b1"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="lk_bge_blue" />
+    <child
+      link="link_start_bluebge" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

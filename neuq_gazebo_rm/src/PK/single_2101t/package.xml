@@ -1,0 +1,63 @@
+<package format="2">
+  <name>single_2101t</name>
+  <version>1.0.0</version>
+  <description>
+    <p>URDF Description package for single_2101t</p>
+    <p>This package contains configuration data, 3D models and launch files
+for single_2101t robot</p>
+  </description>
+  <author>TODO ZhangYae</author>
+  <maintainer email="TODO@email.com" />
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roslaunch</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>rviz</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>gazebo</depend>
+  <export>
+    <architecture_independent />
+  </export>
+</package>
+
+<!-- 模型结构如下
+  base_link         //场地底盘
+     link_signal     //能量开关的轴体和扇叶
+        1                       //1～5：能量开关的装甲板
+        2
+        3
+        4
+        5
+    link_body       //陀螺的轴体
+       link_twinkle  //陀螺的灯条
+       link_shield   //陀螺的装甲板
+-->
+
+<!--# # # # # 工作笔记 # # # # #-->
+<!--3.19
+  在个人wiki上写点东西吧 要不然都忘了……
+-->
+<!--3.21
+  @17：57
+  发现了三级连杆的奥秘了，插件会自动抹去相对转动轴的位置（例如在104行处）
+  需要用二级连杆诱导数据，手动添加到urdf中
+-->
+<!--3.22
+  @9:05
+  写个人wiki，还没有什么灵感
+  不过这时间是占用了
+-->
+<!--3.23
+  @17:49
+  3.21的发现就是胡扯，改位置改不了轴
+  @18:40
+  因为所有零件转换时均参照sw同一参考系，在rviz中虽然不承认参考系（也就i不可构建依赖），但使用那个作为名字可以使得位置正确。
+  底盘使用坐标系5，转动轴体使用自己对应的参考系，轴体部件自动：可以在gazebo中保位置和轴的正确性，转动部件可以转了。
+  @19:14
+  为什么1402版本在rviz中就可以成功和各个部件构成tf通道？
+  这是个问题……
+  @19:17
+  我惊了，我真的惊了：parent link直接改到底盘居然可以构建tf通道
+  现在想的是用两个urdf分别适合gazebo和rviz，修改launch来实现
+  我逐渐的奥利给
+-->

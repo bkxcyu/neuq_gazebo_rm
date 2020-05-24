@@ -1,0 +1,19 @@
+single_2101t:
+    # Publish all joint states -----------------------------------
+  swiveljoint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  swiveljoint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_body
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  swiveljoint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_signal
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+

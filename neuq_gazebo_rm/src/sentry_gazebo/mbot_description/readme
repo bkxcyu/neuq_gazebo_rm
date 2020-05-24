@@ -1,0 +1,9 @@
+launch列表
+world（true.world）： 轨道+底盘（未放置，需要手动拖到轨道）
+albot（true.world）： 轨道+底盘带云台（未放置，需要手动拖到轨道）
+另：
+world文件夹里fake.world，是轨道+底盘已放置在轨道上，可以在world.launch中替换true.world使用
+（可能开的时候会有报错，可以使用）
+*放置技巧
+可以在左栏的pose属性里调整
+在最下有个时间可以暂停，这样放的时候物体就不会乱动了

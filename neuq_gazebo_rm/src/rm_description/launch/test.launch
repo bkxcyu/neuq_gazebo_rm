@@ -1,0 +1,56 @@
+<launch> 
+    <arg name="paused" default="false"/> 
+    <arg name="use_sim_time" default="true"/> 
+    <arg name="gui" default="true"/> 
+    <arg name="debug" default="false"/> 
+ 
+    <!-- 运行gazebo仿真环境 --> 
+    <include file="$(find gazebo_ros)/launch/empty_world.launch"> 
+        <arg name="debug" value="$(arg debug)" /> 
+        <arg name="gui" value="$(arg gui)" /> 
+        <arg name="paused" value="$(arg paused)"/> 
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/> 
+    </include> 
+ 
+	 
+    <!-- 加载机器人模型描述参数 --> 
+	<!-- begin robot1 --> 
+	<group ns="/swivel"> 
+    <param name="robot_description"
+        command="$(find xacro)/xacro
+        $(find rm_description)/urdf/neuq_rm.xacro ns:=/swivel"
+    />
+ 
+   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model /swivel -param robot_description"/>
+ 
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+  <rosparam file="$(find rm_description)/config/gimbal.yaml" command="load"/>
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/swivel/swivel" args="swiveljoint_state_controller swiveljoint1_position_controller swiveljoint2_position_controller  --shutdown-timeout 3"/>
+	</group> 
+
+<!--场地-->
+	<group ns="/single_2101t"> 
+    <param name="robot_description"
+        command="$(find xacro)/xacro
+        $(find single_2101t)/urdf/single_2101t_for_gazebo.urdf ns:=/single_2101t"
+    />
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model /single_2101t -param robot_description"/>
+ 
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find single_2101t)/config/2101.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/single_2101t/single_2101t" args="swiveljoint_state_controller swiveljoint1_position_controller swiveljoint2_position_controller   --shutdown-timeout 3"/>
+ 
+	</group> 
+
+</launch>
+

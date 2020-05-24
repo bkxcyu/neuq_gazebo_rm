@@ -1,0 +1,17 @@
+gimbal:
+    # Publish all joint states -----------------------------------
+  gimbaljoint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  gimbaljoint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: yaw_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  gimbaljoint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: pitch_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+

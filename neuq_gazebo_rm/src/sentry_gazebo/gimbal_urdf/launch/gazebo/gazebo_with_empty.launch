@@ -1,0 +1,32 @@
+<launch>
+    <!-- 设置launch文件的参数 -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <!-- 运行gazebo仿真环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+  <!-- 加载机器人模型描述参数 -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find gimbal_urdf)/urdf/gimbal_base_wtf.xacro'" /> 
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model mrobot -param robot_description"/>
+ 
+  <!-- Load joint controller configurations from YAML file to parameter server(调参数) -->
+  <rosparam file="$(find gimbal_urdf)/config/gimbal_move.yaml" command="load"/>
+
+  <!-- load the controllers(初步猜测是一个让云台一直转的节点) -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/gimbal" args="gimbaljoint_state_controller gimbaljoint1_position_controller gimbaljoint2_position_controller  --shutdown-timeout 3"/>
+
+</launch>
+

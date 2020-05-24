@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="rm_description" type="move.py" name="mov"/>
+	<node pkg="rm_description" type="gazebo_teleop" name="teleop"/>
+</launch>

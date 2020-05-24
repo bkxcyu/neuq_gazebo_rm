@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<robot name="gimbal" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="3.15060006090828E-05 -4.71844785465692E-16 -0.0243287063686799" rpy="0 0 0" />
+      <mass value="1.28319520304303" />
+      <inertia
+        ixx="0.000201918308570387"
+        ixy="-1.62781063301312E-08"
+        ixz="2.49360244993981E-08"
+        iyy="8.47758736521156E-05"
+        iyz="-1.0029928886675E-18"
+        izz="0.000189481579220275" />
+    </inertial>
+
+    <visual>
+        <origin xyz="0 0 0.5" rpy="3.1415 0 0" /><!--<origin xyz="0 0 0" rpy="3.1415 0 0" />-->
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/base_link.STL" />
+      </geometry>
+      	<material name=""> <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="base_link">
+       <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <link name="yaw_Link">
+    <inertial>
+      <origin xyz="8.4734916297402E-05 -0.0210567199604467 0.0350192020002941" rpy="0 0 0" />
+      <mass value="0.620363041042481" />
+      <inertia 
+	ixx="0.000635110656697903"
+        ixy="2.83927165134778E-07"
+        ixz="9.98398801233859E-07"
+        iyy="0.000427297748120087"
+        iyz="-7.69757745582108E-06"
+        izz="0.000601934475765983" />
+    </inertial>
+    <gazebo reference="yaw_link">
+       <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="3.1415 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/yaw_Link.STL" />
+      </geometry>
+      <material name=""> <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/yaw_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="yaw_joint" type="continuous">
+    <origin xyz="0 0 0.455" rpy="0 0 0.48284" /><!--<origin xyz="0 0 -0.045" rpy="0 0 0.48284" />-->
+    <parent link="base_link" />
+    <child link="yaw_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3" upper="3" effort="0" velocity="0" />
+  </joint>
+
+  <link name="pitch_Link">
+    <inertial>
+      <origin xyz="-0.0500676134301025 0.0342025495228345 -0.0112331653769802" py="0 0 0" />
+      <mass value="0.361088560734711" />
+      <inertia
+        ixx="0.000415536264346438"
+        ixy="6.16430097683857E-07"
+        ixz="1.18189085240469E-07"
+        iyy="0.000230220737721965"
+        iyz="1.41772657896547E-05"
+        izz="0.000580282454503549" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="3.1415 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/pitch_Link.STL" />
+      </geometry>
+	<material name=""> <color rgba="1 1 1 1" />
+      </material>
+
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="pitch_link">
+       <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <joint name="pitch_joint" type="continuous">
+    <origin xyz="0 -0.03 -0.088" rpy="0.040757 0 -1.5708" />
+    <parent link="yaw_Link" />
+    <child link="pitch_Link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.785" upper="0.785" effort="0" velocity="0" />
+  </joint>
+
+  <link name="zhoucheng_Link">
+    <inertial>
+      <origin xyz="0.000686124711460026 3.88451282251623E-09 2.54124357841612E-09" rpy="0 0 0" />
+      <mass value="0" />
+      <inertia
+        ixx="2.0562871819405E-07"
+        ixy="1.55409882357327E-13"
+        ixz="-4.19235151298674E-11"
+        iyy="1.80369543345785E-07"
+        iyz="-9.48190155873362E-13"
+        izz="1.80371953239631E-07" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="3.1415 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/zhoucheng_Link.STL" />
+      </geometry>
+      <material name=""> <color rgba="1 1 1 1" />
+      </material>
+
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://gimbal_urdf/meshes/zhoucheng_Link.STL" />
+      </geometry>
+
+    </collision>
+  </link>
+  <gazebo reference="zhoucheng_link">
+       <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <joint name="zhoucheng_joint" type="continuous">
+    <origin xyz="0 0.07 -0.088" rpy="0.040757 0 -1.5708" />
+    <parent link="yaw_Link" />
+    <child link="zhoucheng_Link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.785" upper="0.785" effort="0" velocity="0" />
+  </joint>
+  
+<!-- base_link & yaw_link & yaw_joint  --> 
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="yaw_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- yaw_link & pitch_link & pitch_joint  --> 
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="pitch_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1"> 
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!--  add gazebo_ros_control plugin  --> 
+  <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/gimbal</robotNamespace><!-- robot's name --> 
+        <controlPeriod>0.01</controlPeriod><!-- control period --> 
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+   </gazebo>
+
+
+</robot >
