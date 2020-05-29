@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="single_2101t">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-3.74242429934518 3.57616184684179 0.264668890885264"
+        rpy="0 0 0" />
+      <mass
+        value="11149.8313730777" />
+      <inertia
+        ixx="35962.6468672116"
+        ixy="1127.84693730384"
+        ixz="719.353702236722"
+        iyy="122455.278031136"
+        iyz="564.025490833455"
+        izz="156537.107222116" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.666666666666667 0.666666666666667 0.666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_signal">
+    <inertial>
+      <origin
+        xyz="-1.71598846243626E-13 3.5527136788005E-15 -0.0419091514118968"
+        rpy="0 0 0" />
+      <mass
+        value="17.5139067248976" />
+      <inertia
+        ixx="0.319631625159453"
+        ixy="-6.59194920871187E-17"
+        ixz="3.36153653943533E-15"
+        iyy="0.319631625159453"
+        iyz="3.25097711130738E-17"
+        izz="0.636396114556239" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_signal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.203921568627451 0.203921568627451 0.203921568627451 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_signal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_signal"
+    type="continuous">
+    <origin
+      xyz="1.9709 1.997 2.239"
+      rpy="1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_signal" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="1">
+    <inertial>
+      <origin
+        xyz="1.21568033417674E-12 -0.0739499459008499 0.0786769806763417"
+        rpy="0 0 0" />
+      <mass
+        value="0.048250466189271" />
+      <inertia
+        ixx="6.46853859674442E-05"
+        ixy="5.43740644817718E-17"
+        ixz="8.12405291657431E-18"
+        iyy="7.21923880425893E-05"
+        iyz="-1.6153406895818E-05"
+        izz="0.000128149430960387" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt_1"
+    type="fixed">
+    <origin
+      xyz="-0.0025886 0.64536 -0.11182"
+      rpy="-0.24436 0 3.1416" />
+    <parent
+      link="link_signal" />
+    <child
+      link="1" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="2">
+    <inertial>
+      <origin
+        xyz="1.2170264795941E-12 0.0739499459008535 -0.0786769806763381"
+        rpy="0 0 0" />
+      <mass
+        value="0.0482504661892654" />
+      <inertia
+        ixx="6.4685385967436E-05"
+        ixy="-5.7120513831041E-17"
+        ixz="-1.07556243642351E-17"
+        iyy="7.21923880425854E-05"
+        iyz="-1.61534068958188E-05"
+        izz="0.000128149430960373" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt_2"
+    type="fixed">
+    <origin
+      xyz="0.71731679647069 0.235177895494604 -0.106323395663714"
+      rpy="2.95527009684331 0.0134785788358752 -1.26009049831673" />
+    <parent
+      link="link_signal" />
+    <child
+      link="2" />
+    <axis
+      xyz="-0.368521763663799 0.81478084291578 -0.447575566495283" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="3">
+    <inertial>
+      <origin
+        xyz="1.21758159110641E-12 0.0739499459008484 -0.0786769806763421"
+        rpy="0 0 0" />
+      <mass
+        value="0.0482504661892763" />
+      <inertia
+        ixx="6.46853859674518E-05"
+        ixy="-5.38035328095932E-17"
+        ixz="-1.04345988772257E-17"
+        iyy="7.21923880425932E-05"
+        iyz="-1.61534068958195E-05"
+        izz="0.000128149430960398" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt_3"
+    type="fixed">
+    <origin
+      xyz="0.443550111098946 -0.609552645708592 -0.112281542447151"
+      rpy="2.8887092413026 -0.00098754001236071 -2.47349136163387" />
+    <parent
+      link="link_signal" />
+    <child
+      link="3" />
+    <axis
+      xyz="0.110267831426141 0.75456830476797 -0.646890778101037" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="4">
+    <inertial>
+      <origin
+        xyz="1.21813670261872E-12 0.0739499459008488 -0.0786769806763421"
+        rpy="0 0 0" />
+      <mass
+        value="0.0482504661892674" />
+      <inertia
+        ixx="6.46853859674408E-05"
+        ixy="-5.45963556482232E-17"
+        ixz="-1.04989733812171E-17"
+        iyy="7.21923880425853E-05"
+        iyz="-1.61534068958162E-05"
+        izz="0.000128149430960382" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt_4"
+    type="fixed">
+    <origin
+      xyz="-0.438373532109027 -0.60883447581268 -0.11453715706636"
+      rpy="2.8698248558501 0.00249506299585105 2.50627405863163" />
+    <parent
+      link="link_signal" />
+    <child
+      link="4" />
+    <axis
+      xyz="0.934861599819828 -0.329335063075785 -0.132560195425246" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="5">
+    <inertial>
+      <origin
+        xyz="1.2161383011744E-12 0.0739499459008499 -0.0786769806763403"
+        rpy="0 0 0" />
+      <mass
+        value="0.0482504661892636" />
+      <inertia
+        ixx="6.46853859674336E-05"
+        ixy="-5.49063697069183E-17"
+        ixz="-8.50082265864416E-18"
+        iyy="7.21923880425808E-05"
+        iyz="-1.61534068958156E-05"
+        izz="0.000128149430960369" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt_5"
+    type="fixed">
+    <origin
+      xyz="-0.706761356141555 0.228665984217599 -0.119104105067502"
+      rpy="2.8253399999021 -0.0141477446809957 1.30292235841985" />
+    <parent
+      link="link_signal" />
+    <child
+      link="5" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="link_body">
+    <inertial>
+      <origin
+        xyz="-0.00241317566097571 0.232451072122631 -0.0102363509660908"
+        rpy="0 0 0" />
+      <mass
+        value="15.4805778908806" />
+      <inertia
+        ixx="0.166590587683924"
+        ixy="-7.79834081852165E-19"
+        ixz="-4.24469509218448E-17"
+        iyy="0.246346179703462"
+        iyz="2.82893805291715E-17"
+        izz="0.166590587683924" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_body"
+    type="continuous">
+    <origin
+      xyz="-2.5265 -1.6611 -0.0088161"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_body" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="link_twinkle">
+    <inertial>
+      <origin
+        xyz="1.74207662531067E-05 0.144085474466383 -0.0251371770621405"
+        rpy="0 0 0" />
+      <mass
+        value="0.246053272410611" />
+      <inertia
+        ixx="0.000234418150086636"
+        ixy="-8.01318192430068E-08"
+        ixz="5.95858213073514E-08"
+        iyy="0.000458101383474959"
+        iyz="6.65798752198305E-06"
+        izz="0.000599407609719636" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_twinkle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_twinkle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_twinkle"
+    type="fixed">
+    <origin
+      xyz="-0.13609700747485 0.310895064916623 -0.067100273989678"
+      rpy="0 1.17809724509618 0" />
+    <parent
+      link="link_body" />
+    <child
+      link="link_twinkle" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="link_shield">
+    <inertial>
+      <origin
+        xyz="0.063116087282352 0.0646408367320647 -0.0448980198801134"
+        rpy="0 0 0" />
+      <mass
+        value="0.42384267969433" />
+      <inertia
+        ixx="0.000822120470959803"
+        ixy="4.35788395946006E-13"
+        ixz="8.05549528991312E-13"
+        iyy="0.000583837517307971"
+        iyz="3.15499591266956E-13"
+        izz="0.000822120458784991" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_shield.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://single_2101t/meshes/link_shield.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_shield"
+    type="fixed">
+    <origin
+      xyz="0.0731169198036217 0.181812877626046 -0.0274009819282082"
+      rpy="3.14159265358979 0.394849912112585 3.14159265358979" />
+    <parent
+      link="link_body" />
+    <child
+      link="link_shield" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <gazebo reference="1">
+    <material>Gazebo/BlueLaser</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="2">
+    <material>Gazebo/BlueLaser</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="3">
+    <material>Gazebo/BlueLaser</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="4">
+    <material>Gazebo/BlueLaser</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="5">
+    <material>Gazebo/BlueLaser</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="base_link">
+    <material>Gazebo/Gold</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="link_signal">
+    <material>Gazebo/Grey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="link_body">
+    <material>Gazebo/Grey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="link_twinkle">
+    <material>Gazebo/BlueLaser</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="link_shield">
+    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+</robot>
