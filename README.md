@@ -7,7 +7,7 @@ PK包括2v2比赛场地和步兵竞速与智能射击比赛场地的模型文件
 # 下载编译：
 #### 1.拷贝整个目录到你本地。
 #### 2.下载依赖项：
-如果不是ros自带的gazebo，要sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control安装ros和gazebo的接口
+如果不是ros自带的gazebo，要`sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control`安装ros和gazebo的接口
 $> sudo apt-get update
 $> rospack profile
 $> sudo apt-get install ros-kinetic-position-controllers
