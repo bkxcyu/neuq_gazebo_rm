@@ -1,12 +1,12 @@
-################################################################
-# 功能包结构：
-rm_description包括步兵的模型文件和配置文件。
-sentry_gazebo包括哨兵的模型文件和配置文件。
-PK包括2v2比赛场地和步兵竞速与智能射击比赛场地的模型文件和一些配置文件。
+################################################################  
+# 功能包结构：  
+rm_description包括步兵的模型文件和配置文件。  
+sentry_gazebo包括哨兵的模型文件和配置文件。  
+PK包括2v2比赛场地和步兵竞速与智能射击比赛场地的模型文件和一些配置文件。  
 
-# 下载编译：
-#### 1.拷贝整个目录到你本地。
-#### 2.下载依赖项：
+# 下载编译：  
+#### 1.拷贝整个目录到你本地。  
+#### 2.下载依赖项：  
 如果不是ros自带的gazebo，要`sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control`安装ros和gazebo的接口  
 `$> sudo apt-get update`  
 `$> rospack profile`  
@@ -14,28 +14,28 @@ PK包括2v2比赛场地和步兵竞速与智能射击比赛场地的模型文件
 `$> sudo apt-get install ros-kinetic-effort-controllers`  
 `$> sudo apt_get install ros-kinetic-joint-state-controller`  
 #### 3.加执行权限并编译：
-$> cd neuq_gazebo_rm
-$> catkin_make
-$> cd neuq_gazebo_rm/src/rm_description/src
-$> chmod u+x move.py
-$> chmod u+x rviz.py
+`$> cd neuq_gazebo_rm`  
+`$> catkin_make`  
+`$> cd neuq_gazebo_rm/src/rm_description/src`  
+`$> chmod u+x move.py`  
+`$> chmod u+x rviz.py`  
 
 
-################################################################
-# 步兵仿真：
-步兵仿真目前仅可用于测试自瞄，由于gazebo插件bug导致的漂移问题（转弯速度过快或下坡上坡会导致步兵倾斜）尚未解决，所以还不能测试飞坡。
+################################################################  
+# 步兵仿真：  
+步兵仿真目前仅可用于测试自瞄，由于gazebo插件bug导致的漂移问题（转弯速度过快或下坡上坡会导致步兵倾斜）尚未解决，所以还不能测试飞坡。  
 
-## 一、通信结构：
-gazebo_teleop.cpp	gazebo中步兵模型运动控制文件
-getpoint.cpp		获取gazebo中步兵实际位置传输给rviz用于更新rviz坐标轴
-move.py		控制gazebo中的能量机关和小陀螺按指定规律运动
-rviz.py			rviz通信文件，炮弹和tf关系更新
+## 一、通信结构：  
+`gazebo_teleop.cpp`	gazebo中步兵模型运动控制文件  
+`getpoint.cpp`		获取gazebo中步兵实际位置传输给rviz用于更新rviz坐标轴  
+`move.py`		控制gazebo中的能量机关和小陀螺按指定规律运动  
+`rviz.py`			rviz通信文件，炮弹和tf关系更新  
 
 
 ## 二、使用方式：
 #### 使用gazebo仿真：
-1.roslaunch rm_description test.launch（在gazebo中加载场地模型和步兵模型）
-2.roslaunch rm_description gazebo_node.launch(加载gazebo文件，在此终端可键盘操控)
+1.`roslaunch rm_description test.launch`（在gazebo中加载场地模型和步兵模型）
+2.`roslaunch rm_description gazebo_node.launch`(加载gazebo文件，在此终端可键盘操控)
 #### 使用rviz仿真：(关掉了gazebo仿真图像界面，接受gazebo步兵位置发送给rviz用于更新坐标，gazebo运行太卡可以用这个，rviz中能量机关和陀螺是静止的只是用于参考相对位置,建议imshow显示gazebo摄像头画面，这样更加准确)
 1.roslaunch rm_description rviz.launch（gazebo加载步兵文件）
 2.roslaunch single_2101t display.launch（rviz加载单项赛场地）
